@@ -1,0 +1,109 @@
+SQL> select * from university;
+
+     REGID SNAME      GENDER           YEAR COLLNAME
+---------- ---------- ---------- ---------- --------------------
+         1 chaithu    female           2000 aditya
+         2 jaya       female           2000 viveka college
+         3 raji       female           2001 narayana
+         4 babblu     male             2001 samhitha
+         5 chinnu     female           2000 sri chaithanya
+
+SQL> desc university;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ REGID                                     NOT NULL NUMBER(10)
+ SNAME                                              VARCHAR2(10)
+ GENDER                                             CHAR(10)
+ YEAR                                               NUMBER(10)
+ COLLNAME                                           VARCHAR2(20)
+
+SQL> create table hallticket(htno number(10)  primary key,examcenter varchar2(10),regid number(10), foreign key(regid) references university(regid));
+
+Table created.
+
+SQL> desc hallticket;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ HTNO                                      NOT NULL NUMBER(10)
+ EXAMCENTER                                         VARCHAR2(10)
+ REGID                                              NUMBER(10)
+
+SQL> desc university;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ REGID                                     NOT NULL NUMBER(10)
+ SNAME                                              VARCHAR2(10)
+ GENDER                                             CHAR(10)
+ YEAR                                               NUMBER(10)
+ COLLNAME                                           VARCHAR2(20)
+
+SQL> create table halltickets(htno int not null  primary key,examcenter varchar2(10),regid int not null, foreign key(regid) references university(regid));
+
+Table created.
+
+SQL> desc halltickets;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ HTNO                                      NOT NULL NUMBER(38)
+ EXAMCENTER                                         VARCHAR2(10)
+ REGID                                     NOT NULL NUMBER(38)
+SQL> insert into halltickets(htno,examcenter,regid)values(&htno,'&examcenter',&regid);
+Enter value for htno: 123
+Enter value for examcenter: aditya
+Enter value for regid: 1
+old   1: insert into halltickets(htno,examcenter,regid)values(&htno,'&examcenter',&regid)
+new   1: insert into halltickets(htno,examcenter,regid)values(123,'aditya',1)
+1 row created.
+SQL> insert into halltickets(htno,examcenter,regid)values(&htno,'&examcenter',&regid);
+Enter value for htno: 2
+Enter value for examcenter: sriaditya
+Enter value for regid: 2
+old   1: insert into halltickets(htno,examcenter,regid)values(&htno,'&examcenter',&regid)
+new   1: insert into halltickets(htno,examcenter,regid)values(2,'sriaditya',2)
+1 row created.
+SQL> /
+Enter value for htno: 12
+Enter value for examcenter: samhitha
+Enter value for regid: 3
+old   1: insert into halltickets(htno,examcenter,regid)values(&htno,'&examcenter',&regid)
+new   1: insert into halltickets(htno,examcenter,regid)values(12,'samhitha',3)
+1 row created.
+SQL> /
+Enter value for htno: 23
+Enter value for examcenter: samhitha
+Enter value for regid: 3
+old   1: insert into halltickets(htno,examcenter,regid)values(&htno,'&examcenter',&regid)
+new   1: insert into halltickets(htno,examcenter,regid)values(23,'samhitha',3)
+1 row created.
+SQL> /
+Enter value for htno: 456
+Enter value for examcenter: aditya
+Enter value for regid: 4
+old   1: insert into halltickets(htno,examcenter,regid)values(&htno,'&examcenter',&regid)
+new   1: insert into halltickets(htno,examcenter,regid)values(456,'aditya',4)
+
+1 row created.
+SQL> /
+Enter value for htno: 5678
+Enter value for examcenter: aditya
+Enter value for regid: 5
+old   1: insert into halltickets(htno,examcenter,regid)values(&htno,'&examcenter',&regid)
+new   1: insert into halltickets(htno,examcenter,regid)values(5678,'aditya',5)
+
+1 row created.
+
+SQL> select * from halltickets;
+
+      HTNO EXAMCENTER      REGID
+---------- ---------- ----------
+       123 aditya              1
+         2 sriaditya           2
+        12 samhitha            3
+        23 samhitha            3
+       456 aditya              4
+      5678 aditya              5
+
+6 rows selected.
+
+SQL>
+© 2022 GitH
